@@ -45,6 +45,8 @@ $(document).ready(function() {
       var product = data.product;
       if(product.quanity_on_hand > 0){
         $('#products_list').append(getListItem(product));
+        $("#create_product_form")[0].reset();
+
       }  
     },
     error: function() {
@@ -101,10 +103,12 @@ $(document).ready(function() {
       type: "PUT",
       data: $form.serializeArray(),
       success: function(data) {
-   
         var product = data.product;
         if(product.quanity_on_hand > 0){
           $('#'+editId).html(getEditHTML(product));
+          $("#create_product_form")[0].reset();
+          $("#product_edit_button").addClass("hide")
+          $("#product_add_button").removeClass("hide")
         } else {
           $('#'+editId).remove();
         }
